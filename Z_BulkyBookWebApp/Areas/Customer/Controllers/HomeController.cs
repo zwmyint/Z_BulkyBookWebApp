@@ -1,14 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Z_BulkyBookWebApp.Models;
+using Z_BulkyBook.Models.ViewModels;
 
-namespace Z_BulkyBookWebApp.Controllers
+namespace Z_BulkyBookWebApp.Areas.Customer.Controllers
 {
+    [Area("Customer")]
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

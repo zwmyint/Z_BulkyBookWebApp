@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Z_BulkyBookWebApp.Data
+namespace Z_BulkyBook.DataAccess.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
