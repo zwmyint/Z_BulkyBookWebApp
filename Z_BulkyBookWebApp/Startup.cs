@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Z_BulkyBook.DataAccess.Data;
+using Z_BulkyBook.DataAccess.Repository;
+using Z_BulkyBook.DataAccess.Repository.IRepository;
 
 namespace Z_BulkyBookWebApp
 {
@@ -24,11 +26,21 @@ namespace Z_BulkyBookWebApp
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDatabaseDeveloperPageExceptionFilter();
+            //services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //
+            
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            //
             services.AddControllersWithViews();
+            //services.AddControllersWithViews().AddRazorRuntimeCompilation(); //dotnet 5 no need
+            //services.AddRazorPages(); //dotnet 5 not need
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
