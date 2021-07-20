@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Z_BulkyBook.DataAccess.Repository.IRepository;
+using Z_BulkyBook.Models;
 
 namespace Z_BulkyBookWebApp.Areas.Admin.Controllers
 {
@@ -18,6 +19,26 @@ namespace Z_BulkyBookWebApp.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public IActionResult Upsert(int? id)
+        {
+            Category category = new Category();
+            if (id == null)
+            {
+                //this is for create
+                return View(category);
+            }
+
+            //this is for edit
+            category = _unitOfWork.Category.Get(id.GetValueOrDefault());
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return View(category);
+
+        }
+
 
 
         #region API CALLS
