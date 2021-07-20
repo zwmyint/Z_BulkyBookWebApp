@@ -16,5 +16,7 @@ namespace Z_BulkyBook.DataAccess.Repository.IRepository
 
 
         //
+        void Save();
+        //
     }
 }
