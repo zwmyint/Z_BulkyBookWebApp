@@ -9,12 +9,14 @@ namespace Z_BulkyBook.DataAccess.Repository.IRepository
     public interface IUnitOfWork : IDisposable
     {
         ICategoryRepository Category { get; }
-
+        ICoverTypeRepository CoverType { get; }
 
         // for SP
         ISP_Call SP_Call { get; }
 
 
+        //
+        void Save();
         //
     }
 }
