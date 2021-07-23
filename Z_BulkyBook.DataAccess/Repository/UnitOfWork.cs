@@ -20,7 +20,7 @@ namespace Z_BulkyBook.DataAccess.Repository
             Category = new CategoryRepository(_db);
             CoverType = new CoverTypeRepository(_db);
             Product = new ProductRepository(_db);
-
+            Company = new CompanyRepository(_db);
 
 
             SP_Call = new SP_Call(_db);
@@ -30,7 +30,7 @@ namespace Z_BulkyBook.DataAccess.Repository
         public ICategoryRepository Category { get; private set; }
         public ICoverTypeRepository CoverType { get; private set; }
         public IProductRepository Product { get; private set; }
-
+        public ICompanyRepository Company { get; private set; }
 
 
         //
