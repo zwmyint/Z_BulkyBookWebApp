@@ -10,6 +10,9 @@ namespace Z_BulkyBook.DataAccess.Repository.IRepository
     {
         ICategoryRepository Category { get; }
         ICoverTypeRepository CoverType { get; }
+        IProductRepository Product { get; }
+
+
 
         // for SP
         ISP_Call SP_Call { get; }
