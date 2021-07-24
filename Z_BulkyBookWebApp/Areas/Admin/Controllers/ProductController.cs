@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -8,10 +9,12 @@ using System.Linq;
 using Z_BulkyBook.DataAccess.Repository.IRepository;
 using Z_BulkyBook.Models;
 using Z_BulkyBook.Models.ViewModels;
+using Z_BulkyBook.Utility;
 
 namespace Z_BulkyBookWebApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

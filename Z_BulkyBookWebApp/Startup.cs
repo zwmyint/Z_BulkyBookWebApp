@@ -38,6 +38,7 @@ namespace Z_BulkyBookWebApp
             //
             services.AddSingleton<IEmailSender, EmailSender>();
 
+            services.Configure<EmailOptions>(Configuration);
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -46,7 +47,27 @@ namespace Z_BulkyBookWebApp
             //services.AddControllersWithViews().AddRazorRuntimeCompilation(); //dotnet 5 no need
             services.AddRazorPages(); //dotnet 5 not need
 
+            // for Redirect to login/logout and accessdenied !
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
 
+            services.AddAuthentication().AddFacebook(options =>
+            {
+                options.AppId = "424796598734451";
+                options.AppSecret = "c61dc08e23784997d0e31a19860cb6bc";
+            });
+            //services.AddAuthentication().AddGoogle(options =>
+            //{
+            //    options.ClientId = "751413081977-ct8rrlcf8cgt8f42b5evots13mg458lt.apps.googleusercontent.com";
+            //    options.ClientSecret = "LPRLug47n8OQsYAirUVGofLw";
+
+            //});
+
+            //
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

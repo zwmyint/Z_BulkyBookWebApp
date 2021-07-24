@@ -14,6 +14,10 @@ namespace Z_BulkyBook.DataAccess.Repository.IRepository
         ICompanyRepository Company { get; }
 
 
+        IShoppingCartRepository ShoppingCart { get; }
+        IOrderHeaderRepository OrderHeader { get; }
+        IOrderDetailsRepository OrderDetails { get; }
+
 
         IApplicationUserRepository ApplicationUser { get; }
 
