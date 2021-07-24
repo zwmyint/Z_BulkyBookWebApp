@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Z_BulkyBook.DataAccess.Data;
 using Z_BulkyBook.DataAccess.Repository;
 using Z_BulkyBook.DataAccess.Repository.IRepository;
+using Z_BulkyBook.Utility;
 
 namespace Z_BulkyBookWebApp
 {
@@ -28,17 +30,21 @@ namespace Z_BulkyBookWebApp
                     Configuration.GetConnectionString("DefaultConnection")));
             //services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            ////services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            ////    .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             //
-            
+            services.AddSingleton<IEmailSender, EmailSender>();
+
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             //
             services.AddControllersWithViews();
             //services.AddControllersWithViews().AddRazorRuntimeCompilation(); //dotnet 5 no need
-            //services.AddRazorPages(); //dotnet 5 not need
+            services.AddRazorPages(); //dotnet 5 not need
 
 
         }
