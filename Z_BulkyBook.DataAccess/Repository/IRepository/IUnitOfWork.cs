@@ -15,6 +15,7 @@ namespace Z_BulkyBook.DataAccess.Repository.IRepository
 
 
 
+        IApplicationUserRepository ApplicationUser { get; }
 
         // for SP
         ISP_Call SP_Call { get; }
